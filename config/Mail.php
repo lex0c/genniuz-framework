@@ -7,7 +7,7 @@
 use \System\DataLoader;
 use \System\Interfaces\ConfigInterface;
 
-class Mail extends DataLoader implements ConfigInterface
+final class Mail extends DataLoader implements ConfigInterface
 {
 	
     private static $conf = [
