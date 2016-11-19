@@ -89,7 +89,7 @@ class Database implements ConfigInterface
          ===========================================================================
          = 
          */
-        'engine' => ''
+        'engine' => null
 
     ];
     
