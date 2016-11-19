@@ -1,14 +1,11 @@
-<?php //namespace \Config;
+<?php namespace Config;
+
+use \System\DataLoader;
+use \System\Interfaces\ConfigInterface;
 
 /**
 * 
 */
-
-//Os 'require' são temporarios até o autoload ficar pronto..
-require_once (__DIR__ . '/../system/DataLoader.php');
-require_once (__DIR__ . '/../system/interfaces/ConfigInterface.php');
-//use \System\DataLoader;
-//use \System\Interfaces\ConfigInterface;
 
 final class App extends DataLoader implements ConfigInterface
 {

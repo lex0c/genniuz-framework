@@ -1,11 +1,11 @@
-<?php namespace \Config
+<?php namespace Config
+
+use \System\DataLoader;
+use \System\Interfaces\ConfigInterface;
 
 /**
 * 
 */
-
-use \System\DataLoader;
-use \System\Interfaces\ConfigInterface;
 
 final class Mail extends DataLoader implements ConfigInterface
 {

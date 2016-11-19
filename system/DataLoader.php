@@ -1,7 +1,10 @@
-<?php //namespace \System;
+<?php namespace System;
 
-require_once (__DIR__ . '/interfaces/ConfigLoaderInterface.php');
-//use \System\Interfaces\ConfigLoaderInterface;
+use \System\Interfaces\ConfigLoaderInterface;
+
+/**
+ *   
+ */
 
 abstract class DataLoader implements ConfigLoaderInterface
 {

@@ -1,7 +1,9 @@
 <?php
 
-require_once (__DIR__ . "/../../config/App.php");
-require_once (__DIR__ . "/../../config/Database.php");
+require_once (__DIR__ . "/../../vendor/autoload.php");
+
+use \Config\App;
+use \Config\Database;
 
 echo "<b>----- App -----</b>";
 echo "<br>";

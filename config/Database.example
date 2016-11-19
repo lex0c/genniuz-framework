@@ -1,11 +1,12 @@
-<?php namespace \Config;
+<?php namespace Config;
+
+use \PDO;
+use \System\DataLoader;
+use \System\Interfaces\ConfigInterface;
 
 /**
 * 
 */
-
-use \System\DataLoader;
-use \System\Interfaces\ConfigInterface;
 
 final class Database extends DataLoader implements ConfigInterface
 {

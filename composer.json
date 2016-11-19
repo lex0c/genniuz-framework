@@ -19,9 +19,32 @@
     },
     "autoload": {
         "psr-4": {
+            
             "App\\": "app/",
+
+            "App\\Database\\": "app/database/",
+            "App\\Database\\Entities\\": "app/database/entities/",
+            "App\\Database\\Exceptions\\": "app/database/exceptions/",
+
+            "App\\Global\\": "app/global/",
+            
+            "App\\Http\\": "app/http/",
+            "App\\Http\\Controllers\\": "app/http/controllers/",
+            "App\\Http\\Exceptions\\": "app/http/exceptions/",
+            "App\\Http\\Requests\\": "app/http/requests/",
+            "App\\Http\\Routes\\": "app/http/routes/",
+
             "Config\\": "config/",
-            "System\\": "system/"
+
+            "Resources\\Helpers\\": "resources/helpers/",
+            "Resources\\Storage\\Cache\\": "resources/storage/cache/",
+            "Resources\\Storage\\Session\\": "resources/storage/session/",
+
+            "System\\": "system/",
+            "System\\Core\\": "system/core/",
+            "System\\Exceptions\\": "system/exceptions/",
+            "System\\Interfaces\\": "system/interfaces/"
+
         }
     }
 }
