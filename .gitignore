@@ -1,3 +1,5 @@
 node_modules/
 config/Database.php
 tests/local/
+vendor/
+composer.lock
