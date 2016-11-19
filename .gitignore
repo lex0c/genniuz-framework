@@ -1,5 +1,7 @@
-node_modules/
-config/Database.php
-tests/local/
 vendor/
 composer.lock
+composer.phar
+node_modules/
+config/Database.php
+Docs/private/
+tests/local/
