@@ -1,13 +1,13 @@
-<?php //namespace Config
+<?php namespace \Config
 
 /**
 * 
 */
 
-require_once(__DIR__ . '/../system/interfaces/ConfigInterface.php');
-//use System\Interfaces\ConfigInterface;
+use \System\DataLoader;
+use \System\Interfaces\ConfigInterface;
 
-class Mail implements ConfigInterface
+class Mail extends DataLoader implements ConfigInterface
 {
 	
     private static $conf = [
@@ -16,20 +16,16 @@ class Mail implements ConfigInterface
     
     ];
     
-    //Acesso Estático
+    //Classe para acesso estático
     private function __construct()
     {}
     
     /**
-     * 
+     * Retorna as variaveis de ambiente de email
      */
     public static function get($index)
     {
-        if((is_string($index)) && (array_key_exists($index, self::$conf))):
-            return self::$conf[$index];
-        endif;
-
-        return null;
+        return parent::loader($index, self::$conf);
     }
 
 }

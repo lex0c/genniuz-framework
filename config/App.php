@@ -1,13 +1,16 @@
-<?php //namespace Config;
+<?php //namespace \Config;
 
 /**
 * 
 */
 
-require_once(__DIR__ . '/../system/interfaces/ConfigInterface.php');
-//use System\Interfaces\ConfigInterface;
+//Os 'require' são temporarios até o autoload ficar pronto..
+require_once (__DIR__ . '/../system/DataLoader.php');
+require_once (__DIR__ . '/../system/interfaces/ConfigInterface.php');
+//use \System\DataLoader;
+//use \System\Interfaces\ConfigInterface;
 
-class App implements ConfigInterface
+final class App extends DataLoader implements ConfigInterface
 {
 
     private static $conf = [
@@ -77,20 +80,16 @@ class App implements ConfigInterface
         'lang' => 'pt-br'
     ];
     
-    //Acesso Estático
+    //Classe para acesso estático
     private function __construct()
     {}
     
     /**
-     * 
+     * Retorna as variaveis de ambiente da aplicação
      */
     public static function get($index)
     {
-        if((is_string($index)) && (array_key_exists($index, self::$conf))):
-            return self::$conf[$index];
-        endif;
-
-        return null;
+        return parent::loader($index, self::$conf);
     }
 
 }

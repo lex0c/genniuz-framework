@@ -1,4 +1,4 @@
-<?php //namespace System\Interfaces;
+<?php //namespace \System\Interfaces;
 
 /**
  * 
