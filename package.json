@@ -1,24 +1,25 @@
 {
-  "name": "Stroct",
+  "name": "Genniuz Framework",
   "version": "1.0.0",
-  "description": "Packages structure for initialization of projects.",
+  "description": "Estrutura com algumas configurações e automatizações de processos e tarefas para iniciar projetos em PHP de forma simples e rapida.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/lleocastro/stroct.git"
+    "url": "git://github.com/lleocastro/genniuz-framework.git"
   },
   "keywords": [
     "project",
+    "framework",
     "structure",
     "mvc"
   ],
   "author": "Léo Castro",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lleocastro/stroct/issues"
+    "url": "https://github.com/lleocastro/genniuz-framework/issues"
   },
   "dependencies": {},
   "devDependencies": {
