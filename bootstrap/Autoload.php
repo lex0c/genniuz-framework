@@ -1,5 +1,17 @@
 <?php //namespace Bootstrap;
 
+/*
+ ===========================================================================
+ = Autoloader 
+ ===========================================================================
+ =
+ = Carrega toda a carga de classes da aplicação dinamicamente, fornecendo
+ = uma programação mais limpa e flexivel.
+ = 
+ = OBS: Ainda não possui suporte a namespaces!
+ = 
+ */
+
 require_once (__DIR__ . '/../system/AppDataLoader.php');
 use \RuntimeException;
 
@@ -7,10 +19,11 @@ use \RuntimeException;
  * Autoload
  * @link https://github.com/lleocastro/genniuz-framework/
  * @license (MIT) https://github.com/lleocastro/genniuz-framework/blob/master/LICENSE
- * @copyright 2016 Leonardo Carvalho <leonardo_carvalho@outlook.com>
- * @package Genniuz/Loader/
+ * @author Leonardo Carvalho <leonardo_carvalho@outlook.com>
+ * @package Genniuz/Bootstrap/
+ * @copyright 2016 
+ * @version 1.0.0
  */
-
 class Autoload extends AppDataLoader
 {
     /**
@@ -22,12 +35,13 @@ class Autoload extends AppDataLoader
     
     /**
      * Carrega configurações adicionais para o autoload.
-     * Defina uma extensão para os arquivos: ['ext' => 'php'] 
+     * Defina uma extensão para os arquivos: ['ext' => 'php']
      * @var array
      */
     protected static $config = [];
 
     /**
+     * Separador para navegação entre diretórios.
      * @var string
      */
     protected static $separator = DIRECTORY_SEPARATOR;
@@ -37,7 +51,8 @@ class Autoload extends AppDataLoader
     {}
     
     /**
-     * Inicializa o autoload.
+     * Inicializa o autoload
+     * @return void
      */
     public static function run()
     {   
@@ -47,6 +62,7 @@ class Autoload extends AppDataLoader
 
     /**
      * Carrega os dados necessarios para o funcionamento do autoload.
+     * @return void
      */
     protected static function getData()
     {
@@ -61,6 +77,7 @@ class Autoload extends AppDataLoader
 
     /**
      * Autoload
+     * @return void
      */
     private static function load()
     {
