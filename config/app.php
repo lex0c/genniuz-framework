@@ -31,17 +31,36 @@
      = e para navegação externa.
      = 
      */
-    'url' => 'http://localhost/',
+    'url' => 'http://localhost',
+    
+    /*
+     ===========================================================================
+     = Pasta Publica
+     ===========================================================================
+     =
+     = Determina a pasta onde contéram os arquivos e diretórios publicos 
+     = da aplicação.
+     = 
+     */
+    'pubdir' => 'public',
 
     /*
      ===========================================================================
-     = Root da Aplicação
+     = Raiz da Aplicação
      ===========================================================================
      =
-     = Determina o diretório raiz para a aplicação.
+     = Determina o diretório raiz para a aplicação '/'.
      = 
      */
-    'root' => 'public/',
+    'root' => dirname(__DIR__),
+
+    /*
+     ===========================================================================
+     = Separador de Diretórios
+     ===========================================================================
+     = 
+     */
+    'separator' => DIRECTORY_SEPARATOR,
 
     /*
      ===========================================================================
