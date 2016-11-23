@@ -14,9 +14,8 @@ Interface LoaderInterface
 {
     /**
      * Carregador
-     * @param string $index [key]
-     * @param array $data [opcional]
+     * @param array
      */
-    public static function loader($index, array $data);
+    public static function run(array $data);
     
 }
