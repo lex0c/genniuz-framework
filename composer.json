@@ -1,25 +1,25 @@
 {
-    "name": "Genniuz Framework",
-    "description": "Estrutura com algumas configurações e automatizações de processos e tarefas para iniciar projetos em PHP de forma simples e rapida.",
-    "keywords": ["project", "framework", "structure", "mvc"],
-    "homepage": "https://github.com/lleocastro/genniuz-framework",
-    "type": "project",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Léo Castro",
-            "email": "leonardo_carvalho@outlook.com"
-        }
-    ],
-    "require-dev": {
-        "phpunit/phpunit": "4.8.*"
-    },
-    "require": {
-        "php": ">=5.5.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Bootstrap\\": "bootstrap/"
-        }
+  "name": "Genniuz Framework",
+  "description": "Estrutura com algumas configurações e automatizações de processos e tarefas para iniciar projetos em PHP de forma simples e rapida.",
+  "keywords": ["project", "framework", "structure", "mvc"],
+  "homepage": "https://github.com/lleocastro/genniuz-framework",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Léo Castro",
+      "email": "leonardo_carvalho@outlook.com"
     }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "4.8.*"
+  },
+  "require": {
+    "php": ">=5.5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bootstrap\\": "bootstrap/"
+    }
+  }
 }
