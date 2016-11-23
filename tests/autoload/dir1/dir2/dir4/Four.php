@@ -1,4 +1,4 @@
-<?php
+<?php //namespace Tests\Autoload\Dir1\Dir2\Dir4;
 
 class Four
 {	
