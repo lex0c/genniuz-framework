@@ -21,7 +21,9 @@
   "bugs": {
     "url": "https://github.com/lleocastro/genniuz-framework/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "toastr": "~2.1.1"
+  },
   "devDependencies": {
     "gulp": "~3.9.1",
     "gulp-sass": "~2.3.2",
