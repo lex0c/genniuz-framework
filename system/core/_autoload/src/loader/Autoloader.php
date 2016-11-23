@@ -163,7 +163,7 @@ class Autoloader implements LoaderInterface
          * @throws RuntimeException
          */
         if($notFind):
-            throw new RuntimeException("Archive '{$file}' not found in '{$baseDir}'!");
+            throw new RuntimeException("File '{$file}' not found in '{$baseDir}'!");
         endif;
     }
 
