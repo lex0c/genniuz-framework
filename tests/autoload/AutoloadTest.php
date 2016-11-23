@@ -1,6 +1,6 @@
 <?php
 
-require_once (__DIR__ . '/../../bootstrap/Modules.php');
+require_once (__DIR__ . '/../../bootstrap/modules.php');
 
 use \Tests\Autoload\Dir1\One;
 use \Tests\Autoload\Dir1\Dir2\Two;
