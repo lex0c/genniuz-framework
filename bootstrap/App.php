@@ -1,5 +1,7 @@
 <?php //namespace Bootstrap;
 
+require_once (__DIR__ . '/../system/interfaces/RunnableInterface.php');
+
 /*
  ===========================================================================
  = Inicializa a Aplicação
@@ -10,7 +12,10 @@
  = 
  */
 
-final class App 
+ use \RuntimeException;
+ use \InvalidArgumentException;
+
+final class App implements RunnableInterface
 {
 	/**
      * Verifica se a aplicação já está rodando.
@@ -19,19 +24,60 @@ final class App
 	private static $running = false;
 
     /**
+     * Caminho para os arquivos de configurações
      * @var string
      */
-    private static $path = '/../config/';
+    private static $path = '/../configs/';
+
+    /**
+     * Arquivos de configurações
+     * @var array
+     */
+    private static $appFile   = [];
+    private static $dbFile    = [];
+    private static $mailFile  = [];
+    private static $aliasFile = [];
 
     /**
      * AppStart
      * @param array [optional]
      * @return boolean
+     * @throws RuntimeException
      */
     public static function run(array $data = [])
     {
+        /**
+         * Concatena o caminho completo até a pasta '/config'
+         * @var string
+         */
+        self::$path = __DIR__ . self::$path;
+        
+        /**
+         * Verifica se a aplicação não está rodando para carregar os módulos
+         * apenas uma vez durante o escopo de execução..
+         */
     	if(!$running):
             self::$running = true;
+            
+            if((is_readable(self::$path . 'app.php')) 
+                && (is_readable(self::$path . 'database.php')) 
+                && (is_readable(self::$path . 'mail.php')) 
+                && (is_readable(self::$path . 'aliases.php'))):
+                
+                /**
+                 * Requisita e carrega as configurações 
+                 */
+                self::$appFile   = require_once (self::$path . 'app.php');
+                self::$dbFile    = require_once (self::$path . 'database.php');
+                self::$mailFile  = require_once (self::$path . 'mail.php');
+                self::$aliasFile = require_once (self::$path . 'aliases.php');
+            else:
+                throw new RuntimeException("Essential files of configurations not found in '/configs/'.");
+            endif;
+            
+            /**
+             * Inicializa o autoloader
+             */
             require_once (App::alias('autoload'));
             return true;
         endif;
@@ -40,107 +86,106 @@ final class App
     }
 
     /**
-     *  
+     * AppSleep
+     * @param array [optional]
+     * @return boolean
+     */
+    public static function sleep(array $data = [])
+    {}
+
+    /**
+     * AppDestroy
+     * @return boolean
+     */
+    public static function destroy()
+    {}
+
+    /**
+     * Retorna as variaveis de ambiente referente a 'app'
+     * @param string
+     * @return array
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     public static function get($index)
     {
-        $file = __DIR__ . self::$path . 'app.php';
-        $app = [];
-
         if(self::$running):
-            if(is_readable($file)):
-                $app = include ($file);
-                if((is_string($index)) && (array_key_exists($index, $app))):
-                    return $app[$index];
-                else:
-                    throw new RuntimeException("Key not found in 'app'!");
-                endif;
+            if((is_string($index)) && (array_key_exists($index, self::$appFile))):
+                return self::$appFile[$index];
             else:
-                throw new RuntimeException("File '{$file}' not found!");
+                throw new InvalidArgumentException("Key not found in 'app'!");
             endif;
         else:
             throw new RuntimeException("Application not initialized!");
         endif;
 
-        return false;
+        return [];
     }
 
     /**
-     *  
+     * Retorna as variaveis de ambiente referente a 'database'
+     * @param string
+     * @return array
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     public static function db($index)
     {
-        $file = __DIR__ . self::$path . 'database.php';
-        $db = [];
-        
         if(self::$running):
-            if(is_readable($file)):
-                $db = include ($file);
-                if((is_string($index)) && (array_key_exists($index, $db))):
-                    return $db[$index];
-                else:
-                    throw new RuntimeException("Key not found in 'database'!");
-                endif;
+            if((is_string($index)) && (array_key_exists($index, self::$dbFile))):
+                return self::$dbFile[$index];
             else:
-                throw new RuntimeException("File '{$file}' not found!");
+                throw new InvalidArgumentException("Key not found in 'database'!");
             endif;
         else:
             throw new RuntimeException("Application not initialized!");
         endif;
 
-        return false;
+        return [];
     }
 
     /**
-     *  
+     * Retorna as variaveis de ambiente referente a 'mail'
+     * @param string
+     * @return array
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     public static function mail($index)
     {
-        $file = __DIR__ . self::$path . 'mail.php';
-        $mail = [];
-        
         if(self::$running):
-            if(is_readable($file)):
-                $mail = include ($file);
-                if((is_string($index)) && (array_key_exists($index, $mail))):
-                    return $mail[$index];
-                else:
-                    throw new RuntimeException("Key not found in 'mail'!");
-                endif;
+            if((is_string($index)) && (array_key_exists($index, self::$mailFile))):
+                return self::$mailFile[$index];
             else:
-                throw new RuntimeException("File '{$file}' not found!");
+                throw new InvalidArgumentException("Key not found in 'mail'!");
             endif;
         else:
             throw new RuntimeException("Application not initialized!");
         endif;
 
-        return false;
+        return [];
     }
 
     /**
-     *  
+     * Retorna as variaveis de ambiente referente a 'aliases'
+     * @param string
+     * @return array
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     public static function alias($index)
     {
-        $file = __DIR__ . self::$path . 'aliases.php';
-        $alias = [];
-        
         if(self::$running):
-            if(is_readable($file)):
-                $alias = include ($file);
-                if((is_string($index)) && (array_key_exists($index, $alias))):
-                    return $alias[$index];
-                else:
-                    throw new RuntimeException("Key not found in 'aliases'!");
-                endif;
+            if((is_string($index)) && (array_key_exists($index, self::$aliasFile))):
+                return self::$aliasFile[$index];
             else:
-                throw new RuntimeException("File '{$file}' not found!");
+                throw new InvalidArgumentException("Key not found in 'aliases'!");
             endif;
         else:
             throw new RuntimeException("Application not initialized!");
         endif;
 
-        return false;
+        return [];
     }
 
 }
