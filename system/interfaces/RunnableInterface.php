@@ -6,16 +6,30 @@
  ===========================================================================
  =
  = Define um padrão para criação das classes responsaveis por carregamento
- = de arquivos de configurações da aplicação.
+ = de componentes e configurações da aplicação.
  = 
  */
 
-Interface LoaderInterface
+Interface RunnableInterface
 {
     /**
-     * Carregador
+     * Inicializa
      * @param array
+     * @return boolean
      */
     public static function run(array $data);
+     
+    /**
+     * Trava o estado de um recursos 
+     * @param array
+     * @return boolean
+     */
+    public static function sleep(array $data);
+
+    /**
+     * Limpa e libera memória
+     * @return boolean
+     */
+    public static function destroy();
     
 }
