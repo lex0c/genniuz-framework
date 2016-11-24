@@ -1,21 +1,4 @@
-<?php 
-/*
- ===========================================================================
- = Aliases
- ===========================================================================
- =
- = Padrão de declaração deve ser "nomedopacote/NomeDoArquivo.extensão"
- = 
- */
-return [
-    /*
-     ===========================================================================
-     = Aliases Módulos
-     ===========================================================================
-     =
-     */
-    'modules' => __DIR__ . '/../system/modules.php',
-    
+<?php return [
     /*
      ===========================================================================
      = Aliases para Interfaces
@@ -25,13 +8,16 @@ return [
     'interfaces' => __DIR__ . '/../system/interfaces/',
     'interface/Runnable' => __DIR__ . '/../system/interfaces/RunnableInterface.php',
 
+
     /*
      ===========================================================================
-     = Aliases Unicas
+     = Aliases para Arquivos
      ===========================================================================
      =
      */
-    'autoload' => __DIR__ . '/../bootstrap/_autoload/autoload.php'
-
+    'modules' => __DIR__ . '/../system/modules.php',
+    'autoload' => __DIR__ . '/../bootstrap/_autoload/autoload.php',
+    
+    
     
 ];

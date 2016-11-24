@@ -57,7 +57,9 @@ var_dump(App::alias('modules'));
 echo "<br>";
 var_dump(App::alias('autoload'));
 echo "<br>";
-var_dump(App::alias('interfaces/Loader'));
+var_dump(App::alias('interface/Runnable'));
+echo "<br>";
+var_dump(App::alias('interfaces'));
 echo "<br>";
 
 echo "<br>";
