@@ -15,6 +15,15 @@ require_once (__DIR__ . '/../system/interfaces/RunnableInterface.php');
  use \RuntimeException;
  use \InvalidArgumentException;
 
+/**
+ * Application Start
+ * @link https://github.com/lleocastro/genniuz-framework/
+ * @license (MIT) https://github.com/lleocastro/genniuz-framework/blob/master/LICENSE
+ * @author Leonardo Carvalho <leonardo_carvalho@outlook.com>
+ * @package \Bootstrap;
+ * @copyright 2016 
+ * @version 1.0.0
+ */
 final class App implements RunnableInterface
 {
 	/**
@@ -56,7 +65,7 @@ final class App implements RunnableInterface
          * Verifica se a aplicação não está rodando para carregar os módulos
          * apenas uma vez durante o escopo de execução..
          */
-    	if(!$running):
+    	if(!self::$running):
             self::$running = true;
             
             if((is_readable(self::$path . 'app.php')) 
