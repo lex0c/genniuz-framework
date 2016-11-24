@@ -10,8 +10,8 @@
  = 
  */
 
-require_once (App::alias('interfaces/Loader'));
 use \RuntimeException;
+use \InvalidArgumentException;
 
 /**
  * Autoload
@@ -22,7 +22,7 @@ use \RuntimeException;
  * @copyright 2016 
  * @version 1.0.0
  */
-class Autoloader implements LoaderInterface
+class Autoloader 
 {
     /**
      * Caminhos para indicar ao autoload o que importar.
@@ -115,7 +115,7 @@ class Autoloader implements LoaderInterface
              * Retorna uma exceção caso não tenha um valor valido no "dirlevel"
              * @throws RuntimeException 
              */
-            throw new RuntimeException("Value of 'dirlevel' defined in 'run()' invalid!");
+            throw new InvalidArgumentException;("Value of 'dirlevel' defined in 'run()' invalid!");
         endif;
     }
 
