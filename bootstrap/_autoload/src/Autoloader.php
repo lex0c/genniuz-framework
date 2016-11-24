@@ -177,7 +177,7 @@ class Autoloader
             
             //Ativa o suporte a namespace
             if(self::$namespacesSupport):
-                if(strstr($className, '\\')):
+                if((strstr($className, '\\')) || (!empty($className))):
                     $className = self::getNameSpace($className);
                 else:
                     

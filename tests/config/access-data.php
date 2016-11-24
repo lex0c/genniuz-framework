@@ -1,25 +1,25 @@
 <?php
 
-require_once (__DIR__ . '/../../bootstrap/App.php');
-App::run();
+require_once (__DIR__ . '/../../public/index.php');
+use \System\VariablesEnvironment as Env;
 
 echo "<b>----- App -----</b>";
 echo "<br>";
-var_dump(App::get('env'));
+var_dump(Env::app('env'));
 echo "<br>";
-var_dump(App::get('debug'));
+var_dump(Env::app('debug'));
 echo "<br>";
-var_dump(App::get('url'));
+var_dump(Env::app('url'));
 echo "<br>";
-var_dump(App::get('pubdir'));
+var_dump(Env::app('pubdir'));
 echo "<br>";
-var_dump(App::get('root'));
+var_dump(Env::app('root'));
 echo "<br>";
-var_dump(App::get('ds'));
+var_dump(Env::app('ds'));
 echo "<br>";
-var_dump(App::get('charset'));
+var_dump(Env::app('charset'));
 echo "<br>";
-var_dump(App::get('lang'));
+var_dump(Env::app('lang'));
 echo "<br>";
 
 echo "<br>";
@@ -27,25 +27,25 @@ echo "<br>";
 
 echo "<b>----- Database -----</b>";
 echo "<br>";
-var_dump(App::db('name'));
+var_dump(Env::db('name'));
 echo "<br>";
-var_dump(App::db('prefix'));
+var_dump(Env::db('prefix'));
 echo "<br>";
-var_dump(App::db('host'));
+var_dump(Env::db('host'));
 echo "<br>";
-var_dump(App::db('port'));
+var_dump(Env::db('port'));
 echo "<br>";
-var_dump(App::db('driver'));
+var_dump(Env::db('driver'));
 echo "<br>";
-var_dump(App::db('username'));
+var_dump(Env::db('username'));
 echo "<br>";
-var_dump(App::db('password'));
+var_dump(Env::db('password'));
 echo "<br>";
-var_dump(App::db('fetch'));
+var_dump(Env::db('fetch'));
 echo "<br>";
-var_dump(App::db('charset'));
+var_dump(Env::db('charset'));
 echo "<br>";
-var_dump(App::db('engine'));
+var_dump(Env::db('engine'));
 echo "<br>";
 
 echo "<br>";
@@ -53,13 +53,9 @@ echo "<br>";
 
 echo "<b>----- Aliases -----</b>";
 echo "<br>";
-var_dump(App::alias('modules'));
+var_dump(Env::alias('modules'));
 echo "<br>";
-var_dump(App::alias('autoload'));
-echo "<br>";
-var_dump(App::alias('interface/Runnable'));
-echo "<br>";
-var_dump(App::alias('interfaces'));
+var_dump(Env::alias('autoload'));
 echo "<br>";
 
 echo "<br>";

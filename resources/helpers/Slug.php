@@ -1,4 +1,4 @@
-<?php //namespace Resources\Helpers;
+<?php namespace Resources\Helpers;
 
 /*
  ===========================================================================

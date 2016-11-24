@@ -1,6 +1,4 @@
-<?php //namespace Bootstrap;
-
-require_once (__DIR__ . '/../system/interfaces/RunnableInterface.php');
+<?php namespace Bootstrap;
 
 /*
  ===========================================================================
@@ -12,8 +10,8 @@ require_once (__DIR__ . '/../system/interfaces/RunnableInterface.php');
  = 
  */
 
- use \RuntimeException;
- use \InvalidArgumentException;
+use \RuntimeException;
+use \System\Interfaces\IRunnable;
 
 /**
  * Application Start
@@ -24,7 +22,7 @@ require_once (__DIR__ . '/../system/interfaces/RunnableInterface.php');
  * @copyright 2016 
  * @version 1.0.0
  */
-final class App implements RunnableInterface
+class App implements IRunnable
 {
 	/**
      * Verifica se a aplicação já está rodando.
@@ -42,10 +40,10 @@ final class App implements RunnableInterface
      * Arquivos de configurações
      * @var array
      */
-    private static $appFile   = [];
-    private static $dbFile    = [];
-    private static $mailFile  = [];
-    private static $aliasFile = [];
+    protected static $appFile   = [];
+    protected static $dbFile    = [];
+    protected static $mailFile  = [];
+    protected static $aliasFile = [];
 
     /**
      * AppStart
@@ -68,7 +66,7 @@ final class App implements RunnableInterface
     	if(!self::$running):
             self::$running = true;
             
-            if((is_readable(self::$path . 'app.php')) 
+            if((is_readable(self::$path . 'app.php'))
                 && (is_readable(self::$path . 'database.php')) 
                 && (is_readable(self::$path . 'mail.php')) 
                 && (is_readable(self::$path . 'aliases.php'))):
@@ -83,11 +81,7 @@ final class App implements RunnableInterface
             else:
                 throw new RuntimeException("Essential files of configurations not found in '/configs/'.");
             endif;
-            
-            /**
-             * Inicializa o autoloader
-             */
-            require_once (App::alias('autoload'));
+
             return true;
         endif;
 
@@ -107,94 +101,25 @@ final class App implements RunnableInterface
      * @return boolean
      */
     public static function destroy()
-    {}
-
-    /**
-     * Retorna as variaveis de ambiente referente a 'app'
-     * @param string
-     * @return array
-     * @throws InvalidArgumentException
-     * @throws RuntimeException
-     */
-    public static function get($index)
     {
         if(self::$running):
-            if((is_string($index)) && (array_key_exists($index, self::$appFile))):
-                return self::$appFile[$index];
-            else:
-                throw new InvalidArgumentException("Key not found in 'app'!");
-            endif;
-        else:
-            throw new RuntimeException("Application not initialized!");
+            self::$appFile   = [];
+            self::$dbFile    = [];
+            self::$mailFile  = [];
+            self::$aliasFile = [];
+            self::$running = false;
+            return true;
         endif;
 
-        return [];
+        return false;
     }
 
     /**
-     * Retorna as variaveis de ambiente referente a 'database'
-     * @param string
-     * @return array
-     * @throws InvalidArgumentException
-     * @throws RuntimeException
+     * @return boolean
      */
-    public static function db($index)
+    protected static function getRunnig()
     {
-        if(self::$running):
-            if((is_string($index)) && (array_key_exists($index, self::$dbFile))):
-                return self::$dbFile[$index];
-            else:
-                throw new InvalidArgumentException("Key not found in 'database'!");
-            endif;
-        else:
-            throw new RuntimeException("Application not initialized!");
-        endif;
-
-        return [];
-    }
-
-    /**
-     * Retorna as variaveis de ambiente referente a 'mail'
-     * @param string
-     * @return array
-     * @throws InvalidArgumentException
-     * @throws RuntimeException
-     */
-    public static function mail($index)
-    {
-        if(self::$running):
-            if((is_string($index)) && (array_key_exists($index, self::$mailFile))):
-                return self::$mailFile[$index];
-            else:
-                throw new InvalidArgumentException("Key not found in 'mail'!");
-            endif;
-        else:
-            throw new RuntimeException("Application not initialized!");
-        endif;
-
-        return [];
-    }
-
-    /**
-     * Retorna as variaveis de ambiente referente a 'aliases'
-     * @param string
-     * @return array
-     * @throws InvalidArgumentException
-     * @throws RuntimeException
-     */
-    public static function alias($index)
-    {
-        if(self::$running):
-            if((is_string($index)) && (array_key_exists($index, self::$aliasFile))):
-                return self::$aliasFile[$index];
-            else:
-                throw new InvalidArgumentException("Key not found in 'aliases'!");
-            endif;
-        else:
-            throw new RuntimeException("Application not initialized!");
-        endif;
-
-        return [];
+        return self::$running;
     }
 
 }

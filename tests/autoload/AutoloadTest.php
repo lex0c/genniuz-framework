@@ -1,7 +1,6 @@
 <?php
 
-require_once (__DIR__ . '/../../bootstrap/App.php');
-App::run();
+require_once (__DIR__ . '/../../public/index.php');
 
 use \Tests\Autoload\Dir1\One;
 use \Tests\Autoload\Dir1\Dir2\Two;
