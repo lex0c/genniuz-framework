@@ -1,4 +1,4 @@
-<?php //namespace Bootstrap\Autoload\Src;
+<?php
 
 /*
  ===========================================================================
@@ -14,15 +14,15 @@ use \RuntimeException;
 use \InvalidArgumentException;
 
 /**
- * Autoload
+ * PHP Autoloader
  * @link https://github.com/lleocastro/autoload/
  * @license (MIT) https://github.com/lleocastro/autoload/blob/master/LICENSE
  * @author Leonardo Carvalho <leonardo_carvalho@outlook.com>
- * @package \Src\Loader;
+ * @package \Includder\Loader;
  * @copyright 2016 
- * @version 1.0.0
+ * @version 1.1.3
  */
-class Autoloader 
+class Autoloader
 {
     /**
      * Caminhos para indicar ao autoload o que importar.
@@ -44,6 +44,20 @@ class Autoloader
      * @var boolean
      */
     private static $namespacesSupport = true;
+
+    /**
+     * This autoload demand this file for initialize.
+     * File name customization.
+     * @var string
+     */
+    private static $fileName = '';
+    private static $fileExt = '.json';
+    
+    /**
+     * Namespace customization.
+     * @var string
+     */
+    protected static $projectName = '';
 
     /**
      * @var string
@@ -75,7 +89,9 @@ class Autoloader
     public static function run(array $data)
     {
         if((array_key_exists('dirlevel', $data))):
+            self::$fileName = (is_string($data['filename']))?$data['filename']:'appdata';
             self::$namespacesSupport = ((is_bool($data['namespaces']))?$data['namespaces']:true);
+            self::$projectName = ((is_string($data['projectname']))&&(!empty($data['projectname'])))?$data['projectname']:'';
             self::levelGenerate($data['dirlevel']);
             self::getData();
             self::loader();
@@ -83,8 +99,8 @@ class Autoloader
         endif;
         
         /**
-         * Retorna uma exceção caso não encontre o indice "dir-level" no array.
-         * @throws RuntimeException 
+         * Retorna uma exceção caso não encontre o indice "dirlevel" no array.
+         * @throws RuntimeException
          */
         throw new RuntimeException("Key 'dirlevel' not found! run(['dirlevel' => ])!");
     }
@@ -113,9 +129,9 @@ class Autoloader
             
             /**
              * Retorna uma exceção caso não tenha um valor valido no "dirlevel"
-             * @throws RuntimeException 
+             * @throws InvalidArgumentException 
              */
-            throw new InvalidArgumentException;("Value of 'dirlevel' defined in 'run()' invalid!");
+            throw new InvalidArgumentException("Value of 'dirlevel' defined in 'run()' invalid!");
         endif;
     }
 
@@ -129,7 +145,7 @@ class Autoloader
          * Arquivo a ser procurado
          * @var string
          */
-        $file = 'appdata.json';
+        $file = self::$fileName . self::$fileExt;
 
         /**
          * Status para saber se o arquivo arquivo foi encontrado.
@@ -149,7 +165,7 @@ class Autoloader
                 
                 if(!empty($data)):
                     self::$paths = $data['paths'];
-                    self::$config = $data['config'];
+                    self::$config = $data['configs'];
                     unset($data);
                 endif;
                 
@@ -177,7 +193,7 @@ class Autoloader
             
             //Ativa o suporte a namespace
             if(self::$namespacesSupport):
-                if((strstr($className, '\\')) || (!empty($className))):
+                if((strstr($className, '\\')) || (str_word_count($className) > 1)):
                     $className = self::getNameSpace($className);
                 else:
                     
@@ -256,9 +272,13 @@ class Autoloader
     private static function getNameSpace($class)
     {
         $className = ltrim($class, '\\');
-        //$className = ltrim($class, 'YourAplicationName\\'); //Custom
         
-        $fileName = '';
+        //Custom namespace
+        if(!empty(self::$projectName)):
+            $className = ltrim($class, self::$projectName . '\\');
+        endif;
+        
+        $fileName  = '';
         $namespace = '';
         
         if($lastNsPos = strrpos($className, '\\')):

@@ -10,7 +10,7 @@
  = 
  */
 
-require_once (__DIR__ . '/src/Autoloader.php');
+require_once (__DIR__ . '/autoload/loader/Autoloader.php');
 
 /**
  * OBSERVAÇÕES..
@@ -34,14 +34,20 @@ require_once (__DIR__ . '/src/Autoloader.php');
  * 
  * ARQUIVO DE PATHS
  * Por definição este autoloader procura os paths em um arquivo 'appdata.json'
- * na raiz da aplicação com base na dirlevel.
+ * na raiz do projeto com base na dirlevel. Para mudar isso defina seu
+ * 'filename', exemplo => ['filename' => 'pipoca'], assim ira procurar 
+ * um arquivo 'pipoca.json' na raiz do projeto.
+ * 
+ * TESTES
+ * Para tests internos com a '/tests' defina o 'dirlevel' como '-1'.
  * 
  */
 
 Autoloader::run([
-    'dirlevel' => 3,
+    'dirlevel' => 1,
     'namespaces' => true,
-    'paths' => 'external'
+    'filename' => 'appdata',
+    'projectname' => ''
 ]);
 
 /**
