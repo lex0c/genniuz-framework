@@ -1,19 +1,41 @@
 {
-	"application": {
-        
-	},
-    "autoload": {
-    	"config": {
-            "ext": "php"
-    	},
-    	"paths": { 
-            "Bootstrap\\": "bootstrap/",
-            
-            "Resources\\Helpers\\": "resources/helpers/",
-            
-            "System\\": "system/",
-            "System\\Interfaces\\": "system/interfaces/"
-            
-    	}
+  "name": "Genniuz Framework",
+  "description": "Estrutura com algumas configurações e automatizações de processos e tarefas para iniciar projetos em PHP de forma simples e rapida.",
+  "website": "https://github.com/lleocastro/genniuz-framework",
+  "keywords": ["project", "framework", "mvc"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lleocastro/genniuz-framework.git",
+    "bugs": "https://github.com/lleocastro/genniuz-framework/issues"
+  },
+  "authors": [
+    {
+      "name": "Léo Castro",
+      "email": "leonardo_carvalho@outlook.com"
     }
+  ],
+  "application": {
+    "dependencies": {},
+    "modules": {},
+    "requires": {
+        "php": "~5.5.0"
+    }
+  },
+  "autoload": {
+    "configs": {
+      "ext": "php"
+    },
+    "paths": { 
+      "Bootstrap\\": "bootstrap/",
+            
+      "Resources\\Helpers\\": "resources/helpers/",
+            
+      "System\\": "system/",
+      "System\\Interfaces\\": "system/interfaces/",
+
+      "Tests\\Autoload\\": "tests/autoload/"
+            
+    }
+  }
 }
