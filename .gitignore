@@ -1,9 +1,0 @@
-vendor/
-composer.lock
-composer.phar
-node_modules/
-configs/database.php
-Docs/private/
-tests/local/
-/nbproject/
-.idea/
