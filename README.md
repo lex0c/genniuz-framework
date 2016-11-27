@@ -1,0 +1,3 @@
+#This is Genniuz Framework
+
+> Documentation in development...
