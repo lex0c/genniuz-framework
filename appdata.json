@@ -14,28 +14,6 @@
       "name": "Léo Castro",
       "email": "leonardo_carvalho@outlook.com"
     }
-  ],
-  "application": {
-    "dependencies": {},
-    "modules": {},
-    "requires": {
-        "php": "~5.5.0"
-    }
-  },
-  "autoload": {
-    "configs": {
-      "ext": "php"
-    },
-    "paths": { 
-      "Bootstrap\\": "bootstrap/",
-            
-      "Resources\\Helpers\\": "resources/helpers/",
-            
-      "System\\": "system/",
-      "System\\Interfaces\\": "system/interfaces/",
-
-      "Tests\\Autoload\\": "tests/autoload/"
-            
-    }
-  }
+  ]
+  
 }
