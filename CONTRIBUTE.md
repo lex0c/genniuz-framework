@@ -12,7 +12,7 @@ pull request for each branch. This allows me to review and pull in new features 
 
 ##### *Follow the default of git flow [development, features, releases, hotfixes, bug fixes, support]
 
-## Style Guide
+## Styles Guide
 
 >  All pull requests must adhere to my styles guide. For some change in the style you must 
 [create an issue](https://github.com/lleocastro/styles-guide/issues).
