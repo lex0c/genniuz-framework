@@ -36,7 +36,7 @@ final class Slug
      */
     public static function convert($phrase, $extension=false, $separator='-')
     {
-        if(((!is_string($phrase)) && (empty($phrase))) && (!is_bool($extension)) && (!is_string($separator))):
+        if(((!is_string($phrase)) || (empty($phrase))) || (!is_bool($extension)) || (!is_string($separator))):
             throw new InvalidArgumentException('Arguments not valid!');
         endif;
         
