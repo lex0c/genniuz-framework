@@ -8,26 +8,17 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="tests/bootstrap.php"
->
+         bootstrap="tests/bootstrap.php">
     <testsuites>
-        <testsuite name="Genniuz Tests">
-            <directory>tests/</directory>
+        <testsuite name="Application Test Suite">
+            <directory>tests/phpunit/</directory>
         </testsuite>
     </testsuites>
-
     <filter>
         <whitelist>
-            <directory>../</directory>
-            <exclude>
-                <file></file>
-            </exclude>
+            <directory>app/</directory>
+            <directory>resources/helpers/</directory>
+            <exclude>app/http/routes.php</exclude>
         </whitelist>
     </filter>
-    <php>
-        <env name="" value=""/>
-        <env name="" value=""/>
-        <env name="" value=""/>
-        <env name="" value=""/>
-    </php>
 </phpunit>
