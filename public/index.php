@@ -16,7 +16,7 @@
  = 
  */
 
-require_once (__DIR__ . '/../bootstrap/includder/autoload.php');
+require_once (__DIR__ . '/../bootstrap/autoload.php');
 
 /**
  * Genniuz Framework
