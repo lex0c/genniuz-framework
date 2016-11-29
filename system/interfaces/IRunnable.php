@@ -17,19 +17,19 @@ Interface IRunnable
      * @param array
      * @return boolean
      */
-    public static function run(array $data);
+    public static function run(array $data):bool;
      
     /**
      * Trava o estado de um recursos 
      * @param array
      * @return boolean
      */
-    public static function sleep(array $data);
+    public static function sleep(array $data):bool;
 
     /**
      * Limpa e libera memória
      * @return boolean
      */
-    public static function destroy();
+    public static function destroy():bool;
     
 }

@@ -51,7 +51,7 @@ class App implements IRunnable
      * @return boolean
      * @throws RuntimeException
      */
-    public static function run(array $data = [])
+    public static function run(array $data = []):bool
     {
         /**
          * Concatena o caminho completo até a pasta '/config'
@@ -93,14 +93,14 @@ class App implements IRunnable
      * @param array [optional]
      * @return boolean
      */
-    public static function sleep(array $data = [])
+    public static function sleep(array $data = []):bool
     {}
 
     /**
      * AppDestroy
      * @return boolean
      */
-    public static function destroy()
+    public static function destroy():bool
     {
         if(self::$running):
             self::$appFile   = [];
@@ -117,7 +117,7 @@ class App implements IRunnable
     /**
      * @return boolean
      */
-    protected static function getRunnig()
+    protected static function getRunnig():bool
     {
         return self::$running;
     }

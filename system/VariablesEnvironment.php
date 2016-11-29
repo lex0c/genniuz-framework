@@ -28,89 +28,81 @@ final class VariablesEnvironment extends Application
     /**
      * Retorna as variaveis de ambiente referente a 'app'
      * @param string
-     * @return array
+     * @return string
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public static function app($index)
+    public static function app(string $index):string
     {
         if(parent::getRunnig()):
-            if((is_string($index)) && (array_key_exists($index, parent::$appFile))):
+            if((array_key_exists($index, parent::$appFile))):
                 return parent::$appFile[$index];
             else:
-                throw new InvalidArgumentException("Key not found in 'app'!");
+                throw new InvalidArgumentException("Key not found in 'app.php'!");
             endif;
-        else:
-            throw new RuntimeException("Application not initialized!");
         endif;
 
-        return [];
+        throw new RuntimeException("Application not initialized!");
     }
 
     /**
      * Retorna as variaveis de ambiente referente a 'database'
      * @param string
-     * @return array
+     * @return string
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public static function db($index)
+    public static function db(string $index):string
     {
         if(parent::getRunnig()):
-            if((is_string($index)) && (array_key_exists($index, parent::$dbFile))):
+            if((array_key_exists($index, parent::$dbFile))):
                 return parent::$dbFile[$index];
             else:
-                throw new InvalidArgumentException("Key not found in 'database'!");
+                throw new InvalidArgumentException("Key not found in 'database.php'!");
             endif;
-        else:
-            throw new RuntimeException("Application not initialized!");
         endif;
 
-        return [];
+        throw new RuntimeException("Application not initialized!");
     }
 
     /**
      * Retorna as variaveis de ambiente referente a 'mail'
      * @param string
-     * @return array
+     * @return string
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public static function mail($index)
+    public static function mail(string $index):string
     {
         if(parent::getRunnig()):
-            if((is_string($index)) && (array_key_exists($index, parent::$mailFile))):
+            if((array_key_exists($index, parent::$mailFile))):
                 return parent::$mailFile[$index];
             else:
-                throw new InvalidArgumentException("Key not found in 'mail'!");
+                throw new InvalidArgumentException("Key not found in 'mail.php'!");
             endif;
-        else:
-            throw new RuntimeException("Application not initialized!");
         endif;
 
-        return [];
+        throw new RuntimeException("Application not initialized!");
     }
 
     /**
      * Retorna as variaveis de ambiente referente a 'aliases'
      * @param string
-     * @return array
+     * @return string
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public static function alias($index)
+    public static function alias(string $index):string
     {
         if(parent::getRunnig()):
-            if((is_string($index)) && (array_key_exists($index, parent::$aliasFile))):
+            if((array_key_exists($index, parent::$aliasFile))):
                 return parent::$aliasFile[$index];
             else:
-                throw new InvalidArgumentException("Key not found in 'aliases'!");
+                throw new InvalidArgumentException("Key not found in 'aliases.php'!");
             endif;
-        else:
-            throw new RuntimeException("Application not initialized!");
         endif;
 
-        return [];
+        throw new RuntimeException("Application not initialized!");
     }
     
 }
