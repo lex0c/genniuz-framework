@@ -8,14 +8,15 @@ use \Resources\Helpers\Slug;
  */
 final class SlugTest extends TestCase
 {
+    private $dataInput = 'Testando o slugin PHP.php';
+
     /**
      * @test
      * @expectedSuccess
      */
     public function testGenerateSlug()
     {
-    	$dataInput = 'Testando o slugin PHP.php';
-    	$slug = Slug::convert($dataInput)[0];
+    	$slug = Slug::convert($this->dataInput);
         $this->assertEquals('testando-o-slugin-php.php', $slug);
     }
 
@@ -25,8 +26,7 @@ final class SlugTest extends TestCase
      */
     public function testGetOnlyTitle()
     {
-    	$dataInput = 'Testando o slugin PHP.php';
-    	$slug = Slug::convert($dataInput, true)[0];
+    	$slug = Slug::convert($this->dataInput, true)[0];
         $this->assertEquals('testando-o-slugin-php', $slug);
     }
 
@@ -36,8 +36,7 @@ final class SlugTest extends TestCase
      */
     public function testGetOnlyExtension()
     {
-    	$dataInput = 'Testando o slugin PHP.php';
-    	$slug = Slug::convert($dataInput, true)[1];
+    	$slug = Slug::convert($this->dataInput, true)[1];
         $this->assertEquals('.php', $slug);
     }
 
@@ -47,7 +46,7 @@ final class SlugTest extends TestCase
      */
     public function testInvalidArgumentExceptionInConvert()
     {
-    	$slug = Slug::convert('')[0];
+    	$slug = Slug::convert('');
     }
 
 }

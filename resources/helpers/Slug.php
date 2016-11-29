@@ -34,7 +34,7 @@ final class Slug
      * @param string
      * @return array
      */
-    public static function convert(string $phrase, bool $extension=false, string $separator='-'):array
+    public static function convert(string $phrase, bool $extension=false, string $separator='-')
     {
         if((empty($phrase)) || (empty($separator))):
             throw new InvalidArgumentException('Arguments not valid!');
@@ -58,7 +58,7 @@ final class Slug
             return [$phrase, $ext];
         endif;
 
-        return [$slug];
+        return [$slug][0];
     }
 
 }
