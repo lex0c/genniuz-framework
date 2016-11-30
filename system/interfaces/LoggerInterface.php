@@ -11,7 +11,7 @@
  */
 interface LogggerInterface
 {
-	/**
+    /**
      * Informational message for logs.
      * @param string $message
      * @param array $context
