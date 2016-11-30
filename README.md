@@ -8,7 +8,7 @@
 
 ## To contributions
 
-Please, see doc for [contribute](https://github.com/lleocastro/genniuz-framework/blob/master/CONTRIBUTE.md). Thanks!
+Please, see [doc for contribute](https://github.com/lleocastro/genniuz-framework/blob/master/CONTRIBUTE.md). Thanks!
 
 ### License
 
