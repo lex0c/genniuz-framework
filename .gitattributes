@@ -1,0 +1,21 @@
+# Define the line ending behavior of the different file extensions.
+* text=auto
+* text eol=lf
+*.php text
+*.sql text
+*.md text
+*.js text
+*.css text
+*.scss text
+*.ini text
+*.txt text
+*.xml text
+.htaccess text
+*.properties text
+*.bat eol=crlf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.phar binary
