@@ -1,4 +1,5 @@
 vendor/
+vendors/
 composer.lock
 composer.phar
 node_modules/
