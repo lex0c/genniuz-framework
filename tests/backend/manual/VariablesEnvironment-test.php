@@ -1,6 +1,6 @@
 <?php
 
-require_once (__DIR__ . '/../bootstrap.php');
+require_once (dirname(__DIR__) . '/../bootstrap.php');
 use \Bootstrap\App;
 App::run();
 use \System\VariablesEnvironment as Env;

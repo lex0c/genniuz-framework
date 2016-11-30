@@ -34,7 +34,7 @@ class App implements RunnableInterface
      * Caminho para os arquivos de configurações
      * @var string
      */
-    private static $path = '/../configs/';
+    private static $path = '/configs/';
 
     /**
      * Arquivos de configurações
@@ -57,7 +57,7 @@ class App implements RunnableInterface
          * Concatena o caminho completo até a pasta '/config'
          * @var string
          */
-        self::$path = __DIR__ . self::$path;
+        self::$path = dirname(__DIR__) . self::$path;
         
         /**
          * Verifica se a aplicação não está rodando para carregar os módulos
