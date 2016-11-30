@@ -11,7 +11,7 @@
  */
 
 use \RuntimeException;
-use \System\Interfaces\IRunnable;
+use \System\Interfaces\RunnableInterface;
 
 /**
  * Application Start
@@ -22,7 +22,7 @@ use \System\Interfaces\IRunnable;
  * @copyright 2016 
  * @version 1.0.0
  */
-class App implements IRunnable
+class App implements RunnableInterface
 {
 	/**
      * Verifica se a aplicação já está rodando.
