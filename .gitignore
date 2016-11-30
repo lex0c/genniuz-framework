@@ -8,3 +8,4 @@ Docs/private/
 tests/local/
 /nbproject/
 .idea/
+npm-debug.log
