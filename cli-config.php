@@ -1,0 +1,2 @@
+<?php
+//Doctrine configs
