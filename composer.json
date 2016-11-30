@@ -38,7 +38,8 @@
       "System\\": "system/",
       "Bootstrap\\": "bootstrap/",
       "Resources\\Helpers\\": "resources/helpers/",
-      "System\\Interfaces\\": "system/interfaces/"
+      "System\\Interfaces\\": "system/interfaces/",
+      "System\\Core\\Logger\\": "system/core/logger/",
     }
   },
   "support": {
