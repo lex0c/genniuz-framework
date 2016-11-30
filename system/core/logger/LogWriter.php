@@ -38,14 +38,14 @@ class LogWriter implements PSRLoggerInterface, GenniuzLogInterface
      * @var array
      */
     protected $levels = [
-        'info'      => MonologLogger::INFO,
-        'notice'    => MonologLogger::NOTICE,
-        'alert'     => MonologLogger::ALERT,
-        'emergency' => MonologLogger::EMERGENCY,
-        'warning'   => MonologLogger::WARNING,
-        'error'     => MonologLogger::ERROR,
-        'critical'  => MonologLogger::CRITICAL,
-        'debug'     => MonologLogger::DEBUG
+        'info'       => MonologLogger::INFO,
+        'notice'     => MonologLogger::NOTICE,
+        'alert'      => MonologLogger::ALERT,
+        'emergency'  => MonologLogger::EMERGENCY,
+        'warning'    => MonologLogger::WARNING,
+        'error'      => MonologLogger::ERROR,
+        'critical'   => MonologLogger::CRITICAL,
+        'debug'      => MonologLogger::DEBUG
     ];
 
     
