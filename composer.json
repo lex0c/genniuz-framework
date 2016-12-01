@@ -36,10 +36,10 @@
   "autoload": {
     "psr-4": {
       "System\\": "system/",
-      "Bootstrap\\": "bootstrap/",
+      "Loaders\\": "loaders/",
       "Resources\\Helpers\\": "resources/helpers/",
       "System\\Interfaces\\": "system/interfaces/",
-      "System\\Core\\Logger\\": "system/core/logger/",
+      "System\\Core\\Logger\\": "system/core/logger/"
     }
   },
   "support": {
@@ -51,6 +51,14 @@
     "optimize-autoloader": true,
     "platform": {
       "php": "7.0"
+    }
+  },
+  "scripts": {},
+  "minimum-stability": "beta",
+  "prefer-stable": true,
+  "extra": {
+    "installer-paths": {
+      "system/plugins": []
     }
   }
 }
