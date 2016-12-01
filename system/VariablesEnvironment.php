@@ -2,20 +2,20 @@
 
 /*
  ===========================================================================
- = Variaveis de Ambiente
+ = Variables of Environment
  ===========================================================================
  =
- = Carrega e disponibiliza para toda a aplicação variaveis úteis para a 
- = personalização dos módulos em runtime.
+ = Loads and makes available for the entire application, variables that 
+ = are useful for custom of modules at run time.
  = 
  */
 
 use \RuntimeException;
 use \InvalidArgumentException;
-use \Bootstrap\App as Application;
+use \System\Application as AppLoad;
 
 /**
- * @name Variables of Environment
+ * Variables of Environment
  * @link https://github.com/lleocastro/genniuz-framework/
  * @license (MIT) https://github.com/lleocastro/genniuz-framework/blob/master/LICENSE
  * @author Leonardo Carvalho <leonardo_carvalho@outlook.com>
@@ -23,12 +23,13 @@ use \Bootstrap\App as Application;
  * @copyright 2016 
  * @version 1.0.0
  */
-final class VariablesEnvironment extends Application
+final class VariablesEnvironment extends AppLoad
 {
     /**
-     * Retorna as variaveis de ambiente referente a 'app'
-     * @param string
+     * Returns the environment values for 'app'.
+     * @param string $index
      * @return string
+     * 
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
@@ -46,9 +47,10 @@ final class VariablesEnvironment extends Application
     }
 
     /**
-     * Retorna as variaveis de ambiente referente a 'database'
-     * @param string
+     * Returns the environment values for 'database'.
+     * @param string $index
      * @return string
+     * 
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
@@ -66,9 +68,10 @@ final class VariablesEnvironment extends Application
     }
 
     /**
-     * Retorna as variaveis de ambiente referente a 'mail'
-     * @param string
+     * Returns the environment values for 'mail'.
+     * @param string $index
      * @return string
+     * 
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
@@ -86,9 +89,10 @@ final class VariablesEnvironment extends Application
     }
 
     /**
-     * Retorna as variaveis de ambiente referente a 'aliases'
-     * @param string
+     * Returns the environment values for 'aliases'.
+     * @param string $index
      * @return string
+     * 
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */

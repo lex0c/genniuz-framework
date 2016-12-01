@@ -1,8 +1,7 @@
 <?php
 
-require_once (dirname(__DIR__) . '/../bootstrap.php');
-use \Bootstrap\App;
-App::run();
+require_once (dirname(dirname(__DIR__)) . '/bootstrap.php');
+require_once (dirname(dirname(__DIR__)) . '/../loaders/app.php');
 use \System\VariablesEnvironment as Env;
 
 echo "<b>----- App -----</b>";
@@ -13,11 +12,9 @@ var_dump(Env::app('debug'));
 echo "<br>";
 var_dump(Env::app('url'));
 echo "<br>";
-var_dump(Env::app('pubdir'));
+var_dump(Env::app('webdir'));
 echo "<br>";
-var_dump(Env::app('root'));
-echo "<br>";
-var_dump(Env::app('ds'));
+var_dump(Env::app('key'));
 echo "<br>";
 var_dump(Env::app('charset'));
 echo "<br>";
@@ -55,9 +52,11 @@ echo "<br>";
 
 echo "<b>----- Aliases -----</b>";
 echo "<br>";
-var_dump(Env::alias('modules'));
-echo "<br>";
 var_dump(Env::alias('autoload'));
+echo "<br>";
+var_dump(Env::alias('bootstrap-tests'));
+echo "<br>";
+var_dump(Env::alias('doctrine-conf'));
 echo "<br>";
 
 echo "<br>";
