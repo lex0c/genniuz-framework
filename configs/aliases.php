@@ -1,11 +1,12 @@
 <?php return [
     /*
      ===========================================================================
-     = Aliases para Arquivos
+     = Aliases for Files
      ===========================================================================
      =
      */
-    'modules' => __DIR__ . '/../system/modules.php',
-    'autoload' => __DIR__ . '/../bootstrap/_autoload/autoload.php',
+    'autoload'          => dirname(__DIR__) . '/loaders/autoload.php',
+    'bootstrap-tests'   => dirname(__DIR__) . '/tests/bootstrap.php',
+    'doctrine-conf'     => dirname(__DIR__) . '/cli-config.php'
     
 ];
