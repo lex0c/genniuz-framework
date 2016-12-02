@@ -1,0 +1,5 @@
+CREATE TABLE logs (
+  id INT SERIAL PRIMARY KEY,
+  data TIMESTAMP NOT NULL
+  
+);

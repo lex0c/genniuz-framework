@@ -1,0 +1,6 @@
+CREATE TABLE sessions (
+  id INT SERIAL PRIMARY KEY,
+  data TIMESTAMP NOT NULL,
+  user_agent CHAR(50) NOT NULL,
+  expires INT DEFAULT 99999
+);
