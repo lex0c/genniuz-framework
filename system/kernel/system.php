@@ -26,7 +26,8 @@ define('YEAR', 31536000);
 /**
  * Gets an environment variable from available sources.
  * @param string $key Environment variable
- * @return string
+ * @param [mix] $default 
+ * @return [mix] types
  */
 function env(string $key, $default)
 {
@@ -59,7 +60,10 @@ function env(string $key, $default)
     endif;
     
     unset($aux);
-    if(array_key_exists($key, $env)):
+    unset($file);
+    $env = array_map('trim', $env);
+    
+    if((array_key_exists($key, $env)) && (substr($env[$key], -1) !== '')):
     	return $env[$key];
     endif;
 

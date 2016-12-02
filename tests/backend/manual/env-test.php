@@ -43,16 +43,16 @@ var_dump(env('MAIL_HOST', ''));
 echo "<br>";
 var_dump(env('MAIL_PORT', ''));
 echo "<br>";
-var_dump(env('MAIL_USER', null));
+var_dump(env('MAIL_USER', ''));
 echo "<br>";
-var_dump(env('MAIL_PASS', null));
+var_dump(env('MAIL_PASS', ''));
 
 echo "<br>";
 echo "<br>";
 
 echo "</pre>";
 
-// $email  = 'name@example.com';
+//$email  = 'name@example.com= ';
 // $domain = strstr($email, '@');
 // if(!strcasecmp($email, strstr($email, '@'))){
 // 	echo "string";
@@ -63,3 +63,6 @@ echo "</pre>";
 
 // $user = strstr($email, '@', true); // PHP 5.3.0
 // //echo $user; // prints name
+
+//$email = trim($email);
+//var_dump(substr($email, -1) !== '=');
