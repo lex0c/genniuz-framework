@@ -49,6 +49,7 @@
       "System\\Interfaces\\": "system/interfaces/",
       "System\\Exceptions\\": "system/exceptions/",
       "System\\Modules\\Logger\\": "system/modules/logger/",
+      "System\\Modules\\Encryptor\\": "system/modules/encryptor/",
       "System\\Modules\\Filesystem\\": "system/modules/filesystem/"
     }
   },
@@ -69,9 +70,7 @@
   "extra": {
     "installer-paths": {
       "system/plugins": [],
-      "system/modules": [
-        "lleocastro/encryptor"
-      ]
+      "system/modules": []
     }
   }
 }
