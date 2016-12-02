@@ -27,7 +27,7 @@ use \InvalidArgumentException;
 class HashGenerator extends Disguise
 {
     /**
-     * Encryption prefix
+     * Encryption prefix.
      * @see http://www.php.net/security/crypt_blowfish.php
      * @var string
      */
@@ -48,7 +48,7 @@ class HashGenerator extends Disguise
     protected $cust = 8;
 
     /**
-     * Secret hash for hard encryption
+     * Secret hash for hard encryption.
      * @var string
      */
     private $secret = [];
@@ -56,32 +56,28 @@ class HashGenerator extends Disguise
 
 
     /**
-     * Encrypter Factory
+     * Encrypter Constructor.
      * @param string $prefix
      * @param string $hash
      * @param string $cust
+     * @return void
      */
-    public function __construct($prefix = '', $salt = '', $cust = 8)
+    public function __construct(string $prefix = '', string $salt = '', int $cust = 8)
     {
-        if((!is_string($prefix)) && (!is_string($salt)) && (!is_int($cust))):
-            throw new InvalidArgumentException('Arguments not valid!');
-        endif;
-
-    	$p = (string) trim(htmlentities(strip_tags($prefix)));
-    	$s = (string) trim(htmlentities(strip_tags($salt)));
-    	$c = (int)    htmlentities(strip_tags($cust));
+    	$p = trim(htmlentities(strip_tags($prefix)));
+    	$s = trim(htmlentities(strip_tags($salt)));
     	
         $this->prefix = ((empty($p))?'2a':$p);
     	$this->salt   = ((empty($s))?$this->generateHash():$s);
-        $this->cust   = ((empty($c))?8:$c);
+        $this->cust   = (($cust < 4 || $cust > 31)?8:$cust);
     }
 
     /**
-     * Encrypt Generate
+     * Encrypt Generate.
      * @param string $value
-     * @return string encrypted
+     * @return string
      */
-    public function encode($value)
+    public function encode(string $value):string
     {
         return str_replace('=', '', strrev($this->obscure(
             crypt(
@@ -92,12 +88,12 @@ class HashGenerator extends Disguise
     }
 
     /**
-     * Compare hashes
+     * Compare hashes.
      * @param string $value
      * @param string $hash
      * @return boolean
      */
-    public function isEquals($value, $hash) 
+    public function isEquals(string $value, string $hash):bool
     {
 	    $v = (string) trim(htmlentities(strrev($value)));
 	    $h = $this->illumin((string) trim(htmlentities(strrev($hash))));
@@ -110,19 +106,19 @@ class HashGenerator extends Disguise
     }
 
     /**
-     * Generate a random salt
-     * @return aleatory string encoded
+     * Generate a random salt.
+     * @return string
      */
-	protected function generateSalt() 
+	protected function generateSalt():string
 	{
         return substr(base64_encode(uniqid(mt_rand(), true)), 0, 22);
 	}
 
     /**
-     * Build a hash string for crypt
-     * @return formated string
+     * Build a hash string for crypt.
+     * @return string
      */
-	protected function generateHash() 
+	protected function generateHash():string 
 	{
         return sprintf('$%s$%02d$%s$', $this->prefix, $this->cust, $this->generateSalt());
 	}
