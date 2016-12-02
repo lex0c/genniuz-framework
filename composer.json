@@ -69,7 +69,9 @@
   "extra": {
     "installer-paths": {
       "system/plugins": [],
-      "system/modules": []
+      "system/modules": [
+        "lleocastro/encryptor"
+      ]
     }
   }
 }
