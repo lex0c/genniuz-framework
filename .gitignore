@@ -9,3 +9,4 @@ tests/local/
 /nbproject/
 .idea/
 npm-debug.log
+system/plugins/
