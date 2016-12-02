@@ -72,11 +72,17 @@ class Application implements RunnableInterface
     protected static function loadEssentialFiles()
     {   
         //Check and load...
-        if((is_readable(self::$path . 'app.php'))
-            && (is_readable(self::$path . 'database.php')) 
-            && (is_readable(self::$path . 'mail.php')) 
-            && (is_readable(self::$path . 'aliases.php'))):
-                
+        if((is_readable(self::$path . 'app.php')) && (is_readable(self::$path . 'database.php')) 
+            && (is_readable(self::$path . 'mail.php')) && (is_readable(self::$path . 'aliases.php'))):
+            
+            $kernelSystem = (__DIR__) . DS . 'kernel' . DS . 'system.php';
+            if(is_readable($kernelSystem)):
+                require_once ($kernelSystem);
+            else:
+                throw new RuntimeException('System file not found..');
+                die();
+            endif;
+
             /**
              * Load the config files.
              */
