@@ -1,9 +1,9 @@
+.appdata
 vendor/
 vendors/
 composer.lock
 composer.phar
 node_modules/
-configs/database.php
 Docs/private/
 tests/local/
 /nbproject/

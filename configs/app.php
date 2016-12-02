@@ -8,7 +8,7 @@
      = Isso define como os serviços da aplicação vão operar.
      = 
      */
-    'env' => 'development',
+    'env' => (string) env('APP_ENV', 'development'),
 
     /*
      ===========================================================================
@@ -20,7 +20,7 @@
      = página de erro genérica é mostrada.
      = 
      */
-    'debug' => true,
+    'debug' => (bool) env('APP_DEBUG', true),
 
     /*
      ===========================================================================
@@ -31,7 +31,7 @@
      = e para navegação externa.
      = 
      */
-    'url' => 'http://localhost',
+    'url' => (string) env('APP_URL', 'http://localhost'),
     
     /*
      ===========================================================================
@@ -42,25 +42,17 @@
      = da aplicação.
      = 
      */
-    'pubdir' => 'public',
+    'webdir' => (string) env('APP_WEBDIR', 'pubdir'),
 
     /*
      ===========================================================================
-     = Raiz da Aplicação
+     = Application Key
      ===========================================================================
      =
-     = Determina o diretório raiz para a aplicação '/'.
+     = Define uma hash unica para a segurança da aplicação.
      = 
      */
-    'root' => dirname(__DIR__),
-
-    /*
-     ===========================================================================
-     = Separador de Diretórios
-     ===========================================================================
-     = 
-     */
-    'ds' => DIRECTORY_SEPARATOR,
+     'key' => (string) env('APP_KEY', ''),
 
     /*
      ===========================================================================
@@ -71,7 +63,7 @@
      = data do PHP.
      = 
      */
-    'charset' => 'utf-8',
+    'charset' => (string) env('APP_CHARSET', 'utf-8'),
 
     /*
      ===========================================================================
@@ -81,5 +73,6 @@
      = Determina o idioma padrão que será utilizado no front-end da aplicação.
      = 
      */
-    'lang' => 'pt-br'
+    'lang' => (string) env('APP_LANG', 'pt-br')
+
 ];

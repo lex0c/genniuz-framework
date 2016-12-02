@@ -20,6 +20,7 @@
     "symfony/event-dispatcher": "v3.2.0-RC2",
     "symfony/translation": "3.0.*",
     "symfony/var-dumper": "3.0.*",
+    "symfony/finder": "3.0.*",
     "classpreloader/classpreloader": "3.0.*",
     "phpunit/php-invoker": "1.1.*",
     "monolog/monolog": "1.22.*",
@@ -36,9 +37,12 @@
   "autoload": {
     "psr-4": {
       "System\\": "system/",
-      "Bootstrap\\": "bootstrap/",
+      "Loaders\\": "loaders/",
       "Resources\\Helpers\\": "resources/helpers/",
-      "System\\Interfaces\\": "system/interfaces/"
+      "System\\Interfaces\\": "system/interfaces/",
+      "System\\Exceptions\\": "system/exceptions/",
+      "System\\Modules\\Logger\\": "system/modules/logger/",
+      "System\\Modules\\Filesystem\\": "system/modules/filesystem/"
     }
   },
   "support": {
@@ -50,6 +54,15 @@
     "optimize-autoloader": true,
     "platform": {
       "php": "7.0"
+    }
+  },
+  "scripts": {},
+  "minimum-stability": "beta",
+  "prefer-stable": true,
+  "extra": {
+    "installer-paths": {
+      "system/plugins": [],
+      "system/modules": []
     }
   }
 }
