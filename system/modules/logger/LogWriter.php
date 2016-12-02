@@ -1,4 +1,4 @@
-<?php namespace System\Core\Logger;
+<?php namespace System\Modules\Logger;
 
 /*
  ===========================================================================
