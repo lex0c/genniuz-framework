@@ -1,24 +1,25 @@
 #Application configs
-APP_ENV=
-APP_DEBUG=
-APP_URL=
-APP_KEY=
-APP_CHARSET=
-APP_LANG=
+APP_ENV=development
+APP_DEBUG=true
+APP_URL=http://localhost
+APP_KEY=ffjeij2jf9fjh2rhf290h9hhn23fnoi
+APP_WEBDIR=pubdir
+APP_CHARSET=utf-8
+APP_LANG=pt-br
 
 #Database configs
-DB_NAME=
-DB_PREFIX=
-DB_HOST=
-DB_PORT=
-DB_DRIVER=
-DB_USER=
-DB_PASS=
-DB_ENGINE=
+DB_NAME=genniuz
+DB_PREFIX=gen_
+DB_HOST=localhost
+DB_PORT=3306
+DB_DRIVER=pdo_mysql
+DB_USER=root
+DB_PASS=root
+DB_ENGINE=innoDB
 
 #Email configs
-MAIL_DRIVER=
-MAIL_HOST=
-MAIL_PORT=
-MAIL_USER=
-MAIL_PASS=
+MAIL_DRIVER=smtp
+MAIL_HOST=mailtrap.io
+MAIL_PORT=2525
+MAIL_USER=null
+MAIL_PASS=null

@@ -23,16 +23,46 @@ define('WEEK', 604800);
 define('MONTH', 2592000);
 define('YEAR', 31536000);
 
-define('DS', DIRECTORY_SEPARATOR);
-
 /**
  * Gets an environment variable from available sources.
  * @param string $key Environment variable
  * @return string
  */
-function env(string $key, string $default):string 
+function env(string $key, $default)
 {
-    $path = dirname(dirname(__DIR__)) . '/.appdata';
+	$env = [];
+	$aux = [];
+	$i = 0;
     
+	$file = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . '.appdata';
+    if(is_readable($file)):
+        $file = fopen($file, 'r');
+        
+        while(!feof ($file)):
+        	$row = fgets($file);
+            $aux[$i] = $row;         
+            $i++;
+        endwhile;      
+        fclose($file);
+        
+        $aux = array_map('htmlentities', $aux);
+        $aux = array_map('strip_tags', $aux);
+        $aux = array_map('trim', $aux);
+
+        for($y = 0; $y <= count($aux)-1; $y++):
+        	if(strcasecmp($aux[$y], strstr($aux[$y], '#'))):
+                $str = explode('=', $aux[$y]);
+                $env[$str[0]] = $str[1];
+                $env[$str[0]] = ($str[1] == 'null')?null:$str[1];
+            endif;
+        endfor;
+    endif;
+    
+    unset($aux);
+    if(array_key_exists($key, $env)):
+    	return $env[$key];
+    endif;
+
+    return $default;
 }
 
