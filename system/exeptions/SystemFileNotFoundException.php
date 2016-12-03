@@ -1,8 +1,8 @@
 <?php namespace System\Exceptions;
 
-use \Exception;
+use \RuntimeException;
 
-class SystemFileNotFoundException extends Exception
+class SystemFileNotFoundException extends RuntimeException
 {
     //Code here...
 }
