@@ -1,6 +1,6 @@
 <?php
 
-require_once (dirname(dirname(dirname(__DIR__))) . '/../../system/kernel/system.php');
+require_once (dirname(dirname(dirname(__DIR__))) . '/../../system/kernel/env.php');
 
 echo "<pre>";
 var_dump(env('APP_ENV', 'production'));
