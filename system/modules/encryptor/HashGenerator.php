@@ -81,7 +81,7 @@ class HashGenerator extends Disguise
     {
         return str_replace('=', '', strrev($this->obscure(
             crypt(
-        	    (string) trim(htmlentities(strrev($value))), 
+        	    trim(htmlentities(strrev($value))), 
         	    $this->generateHash()
             )
         )));
@@ -95,8 +95,8 @@ class HashGenerator extends Disguise
      */
     public function isEquals(string $value, string $hash):bool
     {
-	    $v = (string) trim(htmlentities(strrev($value)));
-	    $h = $this->illumin((string) trim(htmlentities(strrev($hash))));
+	    $v = trim(htmlentities(strrev($value)));
+	    $h = $this->illumin(trim(htmlentities(strrev($hash))));
         
         if(crypt($v, $h) === $h):
             return true;
