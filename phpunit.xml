@@ -11,7 +11,9 @@
          bootstrap="tests/bootstrap.php">
     <testsuites>
         <testsuite name="Application Test Suite">
-            <directory>tests/backend/phpunit/</directory>
+            <directory>tmp/framework/tests/backend/phpunit/</directory>
+            <directory>tmp/framework/tests/backend/phpunit/resources/</directory>
+            <directory>tmp/framework/tests/backend/phpunit/modules/</directory>
         </testsuite>
     </testsuites>
     <filter>
