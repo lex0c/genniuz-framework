@@ -10,6 +10,7 @@
  */
 
 use \Psr\Http\Message\ResponseInterface;
+use \InvalidArgumentException;
 use \RuntimeException;
 
 /**
@@ -27,7 +28,7 @@ class Renderer
      * Complete path to a template.
      * @var string
      */
-    private $templatePath = '';
+    protected $templatePath = '';
 
     /**
      * Attributes to use in template.
@@ -40,7 +41,7 @@ class Renderer
      * @param string $templatePath
      * @param array $attributes [optional]
      */
-    public function __construct($templatePath, array $attributes = [])
+    public function __construct(string $templatePath, array $attributes = [])
     {
         if(substr($templatePath, -1) !== '/'):
             $templatePath .= '/';
@@ -60,7 +61,7 @@ class Renderer
     public function render(ResponseInterface $response, string $template, array $data = []):ResponseInterface
     {
         $response->getBody()->write(
-            $this->process($template, array_map("htmlspecialchars", $data))
+            $this->process($template, array_map('htmlspecialchars', $data))
         );
         
         return $response;
@@ -77,8 +78,13 @@ class Renderer
     private function process(string $template, array $data = []) 
     {
         $template = $this->templatePath . $template;       
-        if(!is_file($template)):
+        
+        if(!is_readable($template)):
             throw new RuntimeException("The '{$template}' not found.");
+        endif;
+
+        if(isset($data['template'])):
+            throw new InvalidArgumentException('Duplicate template key found!');
         endif;
         
         ob_start();
@@ -94,13 +100,9 @@ class Renderer
      */
     protected function includeScope(string $template, array $data):bool
     {
-        if(is_readable($template)):
-            extract($data);
-            require $template;
-            return true;
-        endif;
-
-        return false;
+        extract($data);
+        require $template;
+        return true;
     }
 
     /**
@@ -109,11 +111,7 @@ class Renderer
      * @return Renderer
     */
     public function setTemplatePath(string $templatePath):Renderer
-    {
-        if(!is_readable($template)):
-            throw new RuntimeException('Template not found!');
-        endif;
-        
+    {        
         $this->templatePath = trim($templatePath);
         return $this;
     }
@@ -132,7 +130,7 @@ class Renderer
     */
     public function setAttributes(array $attributes):Renderer
     {
-        $this->attributes = array_map("htmlspecialchars", $attributes);
+        $this->attributes = array_map('htmlspecialchars', $attributes);
         return $this;
     }
 
