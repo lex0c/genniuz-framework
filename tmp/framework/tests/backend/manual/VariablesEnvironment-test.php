@@ -1,7 +1,7 @@
 <?php
 
 require_once (dirname(dirname(__DIR__)) . '/bootstrap.php');
-require_once (dirname(dirname(__DIR__)) . '/../loaders/app.php');
+require_once (dirname(dirname(dirname(__DIR__))) . '/../../loaders/app.php');
 use \System\VariablesEnvironment as Env;
 
 echo "<b>----- App -----</b>";

@@ -1,4 +1,4 @@
-<?php namespace Tests\PHPUnit;
+<?php
 
 use \PHPUnit_Framework_TestCase as TestCase;
 use \Resources\Helpers\Slug;
