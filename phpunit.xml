@@ -8,12 +8,10 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="tests/bootstrap.php">
+         bootstrap="tmp/framework/tests/bootstrap.php">
     <testsuites>
-        <testsuite name="Application Test Suite">
+        <testsuite name="Internal Application Test Suite">
             <directory>tmp/framework/tests/backend/phpunit/</directory>
-            <directory>tmp/framework/tests/backend/phpunit/resources/</directory>
-            <directory>tmp/framework/tests/backend/phpunit/modules/</directory>
         </testsuite>
     </testsuites>
     <filter>
