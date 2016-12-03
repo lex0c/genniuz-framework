@@ -50,7 +50,7 @@ class GetHTML
      */
     public function __toString()
     {
-        return $this->toHtml();
+        return $this->getHTMLString();
     }
 
 }
