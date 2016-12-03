@@ -12,6 +12,7 @@
 
 use \RuntimeException;
 use \System\Interfaces\RunnableInterface;
+use \System\Exceptions\SystemFileNotFoundException;
 
 /**
  * Application Start
@@ -31,10 +32,33 @@ class Application implements RunnableInterface
 	private static $running = false;
 
     /**
-     * Path to config files.
+     * Paths to system loads.
      * @var string
      */
-    private static $path = ROOT . DS . 'configs' . DS;
+    protected static $fileExt = '.php';
+    protected static $confPath   = ROOT . DS . 'configs' . DS;
+    protected static $kernelPath = ROOT . DS . 'system' . DS .'kernel' . DS;
+
+    /**
+     * Paths to system loads.
+     * @var string
+     */
+    protected static $fileRegister = [
+        'configs' => [
+            'app',
+            'mail',
+            'database',
+            'aliases'
+        ],
+        'kernel' => [
+            'commons',
+            'configure',
+            'fileloader',
+            'finder',
+            'timer',
+            'env'
+        ]
+    ];
 
     /**
      * Config files.
@@ -55,8 +79,11 @@ class Application implements RunnableInterface
     public static function run(array $data = []):bool
     {        
     	if((self::checkEssentialsRequires()) && (!self::$running)):
-            self::$running = true;        
+            self::$running = true;
+
+            self::loadKernel();
             self::loadEssentialFiles();
+            
             return true;
         endif;
 
@@ -70,31 +97,56 @@ class Application implements RunnableInterface
      * @throws RuntimeException
      */
     protected static function loadEssentialFiles()
-    {   
-        //Check and load...
-        if((is_readable(self::$path . 'app.php')) && (is_readable(self::$path . 'database.php')) 
-            && (is_readable(self::$path . 'mail.php')) && (is_readable(self::$path . 'aliases.php'))):
-            
-            $kernelSystem = (__DIR__) . DS . 'kernel' . DS . 'system.php';
-            if(is_readable($kernelSystem)):
-                require_once ($kernelSystem);
-            else:
-                throw new RuntimeException('System file not found..');
-                die();
+    {
+        $isOk = false;
+
+        for($i = 0; $i < count(self::$fileRegister['configs']); $i++):
+            if(!is_readable(self::$confPath . self::$fileRegister['configs'][$i] . self::$fileExt)):
+                throw new SystemFileNotFoundException(
+                    "Essential files of configurations not found in 'configs/'.");
             endif;
+        endfor;
+        
+        /**
+         * Load the config files.
+         */
+        self::$appFile   = require_once (self::$confPath . 'app.php');
+        self::$dbFile    = require_once (self::$confPath . 'database.php');
+        self::$mailFile  = require_once (self::$confPath . 'mail.php');
+        self::$aliasFile = require_once (self::$confPath . 'aliases.php');
 
-            /**
-             * Load the config files.
-             */
-            self::$appFile   = require_once (self::$path . 'app.php');
-            self::$dbFile    = require_once (self::$path . 'database.php');
-            self::$mailFile  = require_once (self::$path . 'mail.php');
-            self::$aliasFile = require_once (self::$path . 'aliases.php');
+        return true;
+    }
 
+    /**
+     * Load the system files.
+     * @return boolean
+     * 
+     * @throws RuntimeException
+     */
+    protected static function loadKernel():bool
+    {
+        if(self::checkFiles(self::$kernelPath, 'kernel')):
+            for($i = 0; $i < count(self::$fileRegister['kernel']); $i++):
+                require_once (self::$kernelPath . self::$fileRegister['kernel'][$i] . self::$fileExt);
+            endfor;
+            
             return true;
         endif;
+
+        return false;
+    }
+
+    private static function checkFiles(string $path, string $key)
+    {
+        $isOk = false;
+        for($i = 0; $i < count(self::$fileRegister[$key]); $i++):
+            if(!is_readable($path . self::$fileRegister[$key][$i] . self::$fileExt)):
+                throw new SystemFileNotFoundException("Essential files not found in '{$path}/{$key}/'.");
+            endif;
+        endfor;
         
-        throw new RuntimeException("Essential files of configurations not found in 'configs'.");
+        return true;
     }
 
     /**
