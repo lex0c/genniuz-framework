@@ -20,6 +20,7 @@ define('TIME_START', microtime(true));
  */
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__DIR__));
+define('EOL', PHP_EOL);
 
 /*
  ===========================================================================
