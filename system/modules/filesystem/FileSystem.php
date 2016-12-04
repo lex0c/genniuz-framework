@@ -35,15 +35,37 @@ class FileSystem implements FileInterface
      * @return bool
      */
     public function exists(string $path):bool
-    {}
+    {
+        return is_readable($path);
+    }
     
 	/**
      * Get the contents of file.
      * @param string $path
      * @return string
      */
-    public function read(string $path):string
-    {}
+    public function read(string $path, bool $planText = false):array
+    {
+        if(!is_readable($path)):
+            throw new FileNotFoundException('File not found!');
+        endif;
+        
+        if($planText):
+            $file = fopen($path, 'r');
+
+            $data = [];
+            $i = 0;
+
+            while(!feof($file)):
+                $data[$i] = fgets($file, 4096);
+                $i++;
+            endwhile;
+            
+            return array_filter($data);
+        endif;
+
+        return [file_get_contents($path)];
+    }
 
     /**
      * Write the contents of file.
@@ -52,7 +74,11 @@ class FileSystem implements FileInterface
      * @return bool
      */
     public function write(string $path, string $contents):bool
-    {}
+    {
+        if($this->checkFile($path)):
+            return file_put_contents($path, $contents);
+        endif;
+    }
 
     /**
      * Append to a file.
@@ -138,5 +164,14 @@ class FileSystem implements FileInterface
      */
     public function allDirectories(string $directory, bool $recursive = false):array
     {}
+
+    private function checkFile(string $path):bool
+    {
+        if(!is_readable($path)):
+            throw new FileNotFoundException('File not found!');
+        endif;
+
+        return true;
+    }
 
 }
