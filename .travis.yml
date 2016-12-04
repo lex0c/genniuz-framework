@@ -2,7 +2,16 @@ language: php
 sudo: required
 php:
   - 7.0
+  - 7.1
   - hhvm
+env:
+  - DB=mysql
+  - DB=pgsql
 before_script:
   - composer self-update
   - composer install
+notifications:
+  email: leonardo_carvalho@outlook.com
+  on_success: always
+  on_failure: always
+  use_notice: true
