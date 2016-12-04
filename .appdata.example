@@ -24,3 +24,11 @@ MAIL_HOST=mailtrap.io
 MAIL_PORT=2525
 MAIL_USER=null
 MAIL_PASS=null
+
+#Cache config
+CACHE_DRIVER=redis
+CACHE_PREFIX=genn_
+CACHE_CONN=default
+CACHE_HOST=localhost
+CACHE_PORT=6379
+CACHE_PASS=null
