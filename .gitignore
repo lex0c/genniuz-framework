@@ -1,12 +1,29 @@
+#Application files
+system/plugins/
+tmp/compileds/
+Docs/private/
+tests/local/
 .appdata
+logs/
+
+#Composer files
 vendor/
 vendors/
 composer.lock
 composer.phar
+
+#JavaScripts files
 node_modules/
-Docs/private/
-tests/local/
-/nbproject/
-.idea/
 npm-debug.log
-system/plugins/
+
+#IDEs files
+nbproject/
+.idea/
+
+
+#SublimeText cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
