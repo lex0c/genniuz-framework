@@ -2,7 +2,7 @@
 
 /**
  * System Global Env
- * Core functions for including other source files, loading models, etc...
+ * Core function for including other source files, loading models, etc...
  * 
  * @link https://github.com/lleocastro/genniuz-framework/
  * @license (MIT) https://github.com/lleocastro/genniuz-framework/blob/master/LICENSE
@@ -73,11 +73,18 @@ function env(string $key, $default)
     if((array_key_exists($key, $env)) && (substr($env[$key], -1) !== '')):
     	
     	/**
-    	 * Verifica e adiciona um 'underscore' no prefix para do banco de dados.
+    	 * Checks and adds an 'underscore' with prefix to the database.
     	 */
     	if((substr($env['DB_PREFIX'], -1) !== '_') && (substr($env['DB_PREFIX'], -1) !== '-')):
             $env['DB_PREFIX'] .= '_';
     	endif;
+
+        /**
+         * Checks and adds an 'pdo_' in driver prefix to the database.
+         */
+        if((substr($env['DB_DRIVER'], 0, 4) !== 'pdo_')):
+            $env['DB_DRIVER'] = 'pdo_' . $env['DB_DRIVER'];
+        endif;
 
     	return $env[$key];
     endif;
