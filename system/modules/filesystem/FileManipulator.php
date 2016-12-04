@@ -27,7 +27,7 @@ use \Symfony\Component\Finder\Finder;
  * @copyright 2016 
  * @version 1.0.0
  */
-class FileSystem implements FileInterface
+class FileManipulator implements FileInterface
 {
 	/**
      * Check a file exists.
