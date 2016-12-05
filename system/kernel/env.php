@@ -30,7 +30,7 @@ function env(string $key, $default)
     
 	$file = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . '.appdata';
     if(is_readable($file)):
-        $file = fopen($file, 'r');
+        $file = fopen($file, 'rb');
         
         /**
          * Get the content of file to manipulation.
