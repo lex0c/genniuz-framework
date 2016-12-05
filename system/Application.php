@@ -164,7 +164,7 @@ class Application implements RunnableInterface
          */
         if(version_compare(PHP_VERSION, '7.0') < 0):
             trigger_error(
-                'Your PHP version must be equal or higher than 7.0 to use Genniuz.', E_USER_ERROR);
+                'Your PHP version must be equal or higher than "7.0" to use Genniuz.', E_USER_ERROR);
         endif;
 
         /*
@@ -175,7 +175,7 @@ class Application implements RunnableInterface
          * with locale identifiers, timezones and graphemes.
          */
         if(!extension_loaded('intl')):
-            trigger_error('You must enable the intl extension to use Genniuz.', E_USER_ERROR);
+            trigger_error('You must enable the "intl" extension to use Genniuz.', E_USER_ERROR);
         endif;
 
         /*
@@ -186,7 +186,7 @@ class Application implements RunnableInterface
          * encodings for convenience.
          */
         if(!extension_loaded('mbstring')):
-            trigger_error('You must enable the mbstring extension to use Genniuz.', E_USER_ERROR);
+            trigger_error('You must enable the "mbstring" extension to use Genniuz.', E_USER_ERROR);
         endif;
 
         /*
@@ -197,7 +197,26 @@ class Application implements RunnableInterface
          * database-specific PDO driver to access a database server.
          */
         if(!extension_loaded('pdo')):
-            trigger_error('You must enable the PDO extension to use Genniuz.', E_USER_ERROR);
+            trigger_error('You must enable the "PDO" extension to use Genniuz.', E_USER_ERROR);
+        endif;
+
+        /*
+         * This is an interface to the mcrypt library, which supports a wide variety of block algorithms 
+         * such as DES, TripleDES, Blowfish (default), 3-WAY, SAFER-SK64, SAFER-SK128, TWOFISH, TEA, RC2 
+         * and GOST in CBC, OFB, CFB and ECB cipher modes. Additionally, it supports RC6 and IDEA which 
+         * are considered "non-free". CFB/OFB are 8bit by default.
+         */
+        if(!extension_loaded('mcrypt')):
+            trigger_error('You must enable the "mcrypt" extension to use Genniuz.', E_USER_ERROR);
+        endif;
+
+        /*
+         * This module uses the functions of OpenSSL for generation and verification of signatures and 
+         * for sealing (encrypting) and opening (decrypting) data. OpenSSL offers many features that this 
+         * module currently doesn't support. Some of these may be added in the future.
+         */
+        if(!extension_loaded('openssl')):
+            trigger_error('You must enable the "openssl" extension to use Genniuz.', E_USER_ERROR);
         endif;
        
        return true;

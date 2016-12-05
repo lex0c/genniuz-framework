@@ -61,3 +61,7 @@ echo "<br>";
 
 echo "<br>";
 echo "<br>";
+
+//$x = 'pdo_posgree';
+//echo substr($x, 0, 4);
+//echo strlen(strstr($x, '_'));
