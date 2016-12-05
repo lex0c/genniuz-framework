@@ -104,7 +104,7 @@ class ArrayCache implements StorageInterface
      * @param string $key
      * @return bool
      */
-    public function remove(string $key):bool
+    public function delete(string $key):bool
     {
         $key = strip_tags(htmlentities($key));
 
@@ -122,7 +122,7 @@ class ArrayCache implements StorageInterface
      */
     public function removeAll():bool
     {
-        unset($this->cache);
+        $this->cache = [];
         return true;
     }
 
@@ -133,7 +133,7 @@ class ArrayCache implements StorageInterface
     public function keyExists(string $key):bool
     {
         if(array_key_exists($key, $this->cache)):
-            return true
+            return true;
         endif;
 
         return false;

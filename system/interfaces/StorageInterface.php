@@ -24,7 +24,14 @@ interface StorageInterface
      * @param string $key
      * @return bool
      */
-    public function remove(string $key):bool;
+    public function delete(string $key):bool;
+
+    /**
+     * Remove all itens from the cache.
+     * @param string $key
+     * @return bool
+     */
+    public function removeAll():bool;
 
     /**
      * Retrieve an item from the cache by key.
