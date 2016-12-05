@@ -44,27 +44,24 @@ class FileManipulator implements FileInterface
      * @param string $path
      * @return string
      */
-    public function read(string $path, bool $planText = false):array
+    public function read(string $path, $look = false):string
     {
-        if(!is_readable($path)):
-            throw new FileNotFoundException('File not found!');
-        endif;
+        $contents = '';
         
-        if($planText):
-            $file = fopen($path, 'r');
-
-            $data = [];
-            $i = 0;
-
-            while(!feof($file)):
-                $data[$i] = fgets($file, 4096);
-                $i++;
-            endwhile;
-            
-            return array_filter($data);
+        if($this->exists($path)):
+            $handle = fopen($path, 'rb');
+            try{
+                if(flock($handle, LOCK_SH)):
+                    clearstatcache(true, $path);
+                    $contents = fread($handle, filesize($path));
+                    flock($handle, LOCK_UN);
+                endif;
+            }finally{
+                fclose($handle);
+            }
         endif;
 
-        return [file_get_contents($path)];
+        return ($look)?file_get_contents($path):$contents;
     }
 
     /**
