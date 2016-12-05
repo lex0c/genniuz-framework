@@ -50,6 +50,7 @@
       "System\\Exceptions\\": "system/exceptions/",
       "System\\Modules\\Logger\\": "system/modules/logger/",
       "System\\Modules\\Encryptor\\": "system/modules/encryptor/",
+      "System\\Modules\\Caching\\": "system/modules/caching/",
       "System\\Modules\\Filesystem\\": "system/modules/filesystem/"
     }
   },
