@@ -9,13 +9,11 @@
  = 
  */
 
-use \ErrorException;
+use \RuntimeException;
+use \FilesystemIterator;
 use \InvalidArgumentException;
 use \System\Exceptions\FileNotFoundException;
-
 use \System\Interfaces\FileInterface;
-
-use \FilesystemIterator;
 use \Symfony\Component\Finder\Finder;
 
 /**
@@ -27,16 +25,53 @@ use \Symfony\Component\Finder\Finder;
  * @copyright 2016 
  * @version 1.0.0
  */
-class FileManipulator implements FileInterface
+class FileHandler //implements FileInterface
 {
+    /**
+     * Path to the file.
+     * @var string
+     */
+    protected $path = '';
+
+    /**
+     * Inject a the handler.
+     * @var FileHandler
+     */
+    protected $fileHandler = null;
+
+    /**
+     * Constructor.
+     * @param string $path
+     * @return void
+     */
+    public function __construct(string $path, FileHandler $handler = null)
+    {
+        $path = $this->escaper($path);
+        
+        if(substr($path, -1) !== '/'):
+            $path .= '/';
+        endif;
+
+        $path = str_ireplace('/', DIRECTORY_SEPARATOR, $path);
+        $this->fileHandler = $handler;
+        
+        if(is_dir($path)):
+            $this->path = $path;
+        else:
+            throw new RuntimeException("This path '{$path}' is a fileee! :|");
+        endif;
+    }
+
 	/**
      * Check a file exists.
      * @param string $path
      * @return bool
      */
-    public function exists(string $path):bool
+    public function exists(string $filename, string $path = ''):bool
     {
-        return is_readable($path);
+        $filename = $this->escaper($filename);
+        $path = (empty($path)) ? $this->path : $this->escaper($path);
+        return is_readable($path . $filename);
     }
     
 	/**
@@ -299,6 +334,45 @@ class FileManipulator implements FileInterface
         endif;
 
         clearstatcache();
+    }
+
+    public function escaper(string $param = '', array $params = [], bool $stripTags = true)
+    {
+        if((!empty($param)) && (count($params) == 0)):
+            
+            if($stripTags):
+                return strip_tags(htmlentities($param));
+            endif;
+            
+            return htmlentities($param);
+        elseif((empty($param)) && (count($params) > 1)):
+            
+            if($stripTags):
+                $params = array_map('htmlentities', $params);
+                $params = array_map('strip_tags', $params);
+                return $params;
+            endif;
+            
+            return array_map('htmlentities', $params);
+        endif;
+    }
+
+    /**
+     * Retrieve the path.
+     * @return string
+     */
+    public function getPath():string
+    {
+        return $this->path;
+    }
+
+    /**
+     * Retrieve the FileHandler instance.
+     * @return FileHandler
+     */
+    public function getHandler():FileHandler
+    {
+        return $this->fileHandler;
     }
 
 }
